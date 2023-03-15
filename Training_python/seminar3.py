@@ -41,8 +41,8 @@ list_length = int(input("Введите количество элементов 
 number = int(input('Введите искомое число: '))
 for i in range(list_length):
     array_list.append(random.randint(1, 15))
-temp_min = abs(number - array_list[0])
-for i in range(1, list_length):
+    if i == 0:
+        temp_min = abs(number - array_list[0])
     if abs(number - array_list[i]) <= temp_min:
         temp_min = abs(number - array_list[i])
         element = array_list[i]
