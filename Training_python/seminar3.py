@@ -11,31 +11,45 @@
 """
 import random
 
-array_list = []
-count = 0
-list_length = int(input("Введите количество элементов массива: "))
-number = int(input('Введите искомое число: '))
-for i in range(list_length):
-    array_list.append(random.randint(1, 15))
-    if array_list[i] == number:
-        count = count + 1
-print(array_list)
-print(number)
-print(count)
+# array_list = []
+# count = 0
+# list_length = int(input("Введите количество элементов массива: "))
+# number = int(input('Введите искомое число: '))
+# for i in range(list_length):
+#     array_list.append(random.randint(1, 15))
+#     if array_list[i] == number:
+#         count = count + 1
+# print(list_length)
+# print(array_list)
+# print(number)
+# print(f'-> {count}')
 
 """
 Задача 18: Требуется найти в массиве A[1..N] самый близкий по
 величине элемент к заданному числу X. Пользователь в первой строке
 вводит натуральное число N – количество элементов в массиве. В
-последующих строках записаны N целых чисел Ai
-. Последняя строка
-содержит число X
+последующих строках записаны N целых чисел Ai.
+Последняя строка содержит число X
 5
 1 2 3 4 5
 6
 -> 5
 """
-
+array_list = []
+element = None
+list_length = int(input("Введите количество элементов массива: "))
+number = int(input('Введите искомое число: '))
+for i in range(list_length):
+    array_list.append(random.randint(1, 15))
+temp_min = abs(number - array_list[0])
+for i in range(1, list_length):
+    if abs(number - array_list[i]) <= temp_min:
+        temp_min = abs(number - array_list[i])
+        element = array_list[i]
+print(list_length)
+print(array_list)
+print(number)
+print(f'-> {element}')
 """
 Задача 20: В настольной игре Скрабл (Scrabble) каждая буква имеет определенную
 ценность. В случае с английским алфавитом очки распределяются так:
