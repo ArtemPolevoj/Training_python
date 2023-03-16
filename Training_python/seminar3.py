@@ -76,3 +76,12 @@ print(f'-> {element}')
 Вывод:
 12
 """
+points = {1: 'AEIOULNSTR''АВЕИНОРСТ',
+          2: 'DG''ДКЛМПУ',
+          3: 'BCMP''БГЁЬЯ',
+          4: 'FHVWY''ЙЫ',
+          5: 'K''ЖЗХЦЧ',
+          8: 'JZ''ШЭЮ',
+          10: 'QZ''ФЩЪ'}
+word = input('Введите слово: ').upper()
+print(sum([k for i in word for k, v in points.items() if i in v]))
