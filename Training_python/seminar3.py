@@ -11,18 +11,18 @@
 """
 import random
 
-array_list = []
-count = 0
-list_length = int(input("Введите количество элементов массива: "))
-number = int(input('Введите искомое число: '))
-for i in range(list_length):
-    array_list.append(random.randint(1, 15))
-    if array_list[i] == number:
-        count = count + 1
-print(list_length)
-print(array_list)
-print(number)
-print(f'-> {count}')
+# array_list = []
+# count = 0
+# list_length = int(input("Введите количество элементов массива: "))
+# number = int(input('Введите искомое число: '))
+# for i in range(list_length):
+#     array_list.append(random.randint(1, 15))
+#     if array_list[i] == number:
+#         count = count + 1
+# print(list_length)
+# print(array_list)
+# print(number)
+# print(f'-> {count}')
 
 """
 Задача 18: Требуется найти в массиве A[1..N] самый близкий по
@@ -43,7 +43,7 @@ for i in range(list_length):
     array_list.append(random.randint(1, 15))
     if i == 0:
         temp_min = abs(number - array_list[0])
-    if temp_min >= abs(number - array_list[i]):
+    if abs(number - array_list[i]) <= temp_min:
         temp_min = abs(number - array_list[i])
         element = array_list[i]
 print(list_length)
@@ -76,12 +76,3 @@ print(f'-> {element}')
 Вывод:
 12
 """
-points = {1: 'AEIOULNSTR''АВЕИНОРСТ',
-          2: 'DG''ДКЛМПУ',
-          3: 'BCMP''БГЁЬЯ',
-          4: 'FHVWY''ЙЫ',
-          5: 'K''ЖЗХЦЧ',
-          8: 'JZ''ШЭЮ',
-          10: 'QZ''ФЩЪ'}
-word = input('Введите слово: ').upper()
-print(sum([k for i in word for k, v in points.items() if i in v]))
