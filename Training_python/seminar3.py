@@ -85,3 +85,29 @@ points = {1: 'AEIOULNSTR''АВЕИНОРСТ',
           10: 'QZ''ФЩЪ'}
 word = input('Введите слово: ').upper()
 print(sum([k for i in word for k, v in points.items() if i in v]))
+"""
+1. Пользователь вводит месяц в виде целого числа от 1 до 12.
+Сообщить к какому времени года относится месяц (зима, весна, лето, осень).
+Напишите два варианта решения: через list и через dict.
+Пример:
+Введите номер месяца: 10
+Результат через список: Осень
+Результат через словарь: Осень
+"""
+time_year_list = ['зима', "весна", "лето", "осень"]
+time_year_dist = {0: 'зима', 1: "весна", 2: "лето", 3: "осень"}
+number_mounth = int(input("Введите номер месяца: "))
+if 1 <= number_mounth <= 2 or number_mounth == 12:
+    print(f'Результат через список: {time_year_list[0]}')
+    print(f'Результат через словарь: {time_year_dist.get(0)}')
+elif 3 <= number_mounth <= 5:
+    print(f'Результат через список: {time_year_list[1]}')
+    print(f'Результат через словарь: {time_year_dist.get(1)}')
+elif 6 <= number_mounth <= 8:
+    print(f'Результат через список: {time_year_list[2]}')
+    print(f'Результат через словарь: {time_year_dist.get(2)}')
+elif 9 <= number_mounth <= 11:
+    print(f'Результат через список: {time_year_list[3]}')
+    print(f'Результат через словарь: {time_year_dist.get(3)}')
+else:
+    print("Нет такого мясяца")
