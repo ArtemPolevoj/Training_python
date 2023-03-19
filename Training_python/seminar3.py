@@ -155,3 +155,29 @@ def human(name_lastname=None, year_of_birth=None,
           f'email: {email}, телефон: {tel}')
 
 human('Иван Иванов', '1846', 'Москва', 'jackie@gmail.com', '01005321456')
+"""
+4. Реализовать функцию my_func(), которая принимает три позиционных аргумента,
+и возвращает сумму наибольших двух аргументов.
+Попробуйте решить задачу двумя способами:
+1) используя функцию sort()
+2) без функции sort()
+"""
+def my_func_sort(a,b,c):
+    temp_list = [a, b, c]
+    temp_list.sort()
+    return temp_list[1] + temp_list[2]
+def my_func(a, b, c):
+    if a >= c and b >= c:
+        return a + b
+    elif a > b and a < c:
+        return a + c
+    else:
+        return b + c
+
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+c = int(input("Введите третье число: "))
+amount = my_func(a, b, c)
+amount_sort = my_func_sort(a,b,c)
+print(f'Сумма наибольших чисел = {amount}')
+print(f'Сумма наибольших чисел(сортировка) = {amount_sort}')
