@@ -17,6 +17,9 @@ def get_number(string):
     except ValueError:
         print('Введено не число')
         get_number(string)
+    if number < 0:
+        print('Количество не может быть отрицательным')
+        get_number(string)
     return number
 
 
@@ -70,12 +73,8 @@ for i in range(number_of_bushes):
     array.append(get_number(f'Введите количество ягод на {i + 1} кусте: '))
 count = []
 if number_of_bushes <= 3:
-    for i in range(number_of_bushes):
-        count.append(array[i])
+    print(f'Максимальное количество ягод - {sum(array)}')
 else:
     for i in range(len(array)):
         count.append(array[i - 2] + array[i - 1] + array[i])
-if number_of_bushes <= 3:
-    print(f'Максимальное количество ягод - {sum(count)}')
-else:
     print(f'Максимальное количество ягод - {max(count)}')
