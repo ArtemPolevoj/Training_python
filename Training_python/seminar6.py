@@ -28,3 +28,21 @@ quantity = get_number_not_negativ('Enter quantity: ')
 for i in range(1,quantity + 1):
     array.append(first_element + (i - 1) * difference)
 print(*array, sep = '\n')
+
+"""
+Задача 32:
+Определить индексы элементов массива (списка), значения которых принадлежат
+заданному диапазону (т.е. не меньше заданного минимума и не больше заданного
+максимума)
+"""
+
+array = [-5, 9, 0, 3, -1, -2, 1,
+         4, -2, 10, 2, 0, -9, 8, 10, -9,
+         0, -5, -5, 7]
+minimum = get_number('Enter minimum range: ')
+maximum = get_number('Enter maximum range: ')
+result = []
+for i in range(len(array)):
+    if minimum <= array[i] <= maximum:
+        result.append(i)
+print(result)
