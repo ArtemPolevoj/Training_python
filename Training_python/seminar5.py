@@ -1,3 +1,6 @@
+from random import random
+
+
 def get_number(string):
     try:
         number = int(input(string))
@@ -251,3 +254,34 @@ for key, value in get_ASCII().items():
     if (key + temp) % 10 == 0:
         print()
     print(key, value, end='')
+
+"""
+Задание 6.
+В программе генерируется случайное целое число от 0 до 100.
+Пользователь должен его отгадать не более чем за 10 попыток. После каждой
+неудачной попытки должно сообщаться больше или меньше введенное пользователем
+число, чем то, что загадано. Если за 10 попыток число не отгадано,
+то вывести загаданное число.
+Решите через рекурсию. В задании нельзя применять циклы.
+"""
+value = random.randint(0, 100)
+
+
+def guess_number(value, count=10):
+    number = get_number(f'Угадай число, у тебя {count} попыток: ')
+    if number == value:
+        count = count - 1
+        return print(f'Угадал с {10 - count} попытки')
+    elif count == 1:
+        return print(f' Не угадал. Загаданное число - {value}')
+    elif number < value:
+        count = count - 1
+        print('Твоё число меньше')
+        return guess_number(value, count)
+    elif number > value:
+        count = count - 1
+        print('Твоё число больше')
+        return guess_number(value, count)
+
+
+guess_number(value)
