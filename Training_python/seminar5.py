@@ -6,6 +6,7 @@ def get_number(string):
         return get_number(string)
     return number
 
+
 def get_number_not_negativ(str):
     number = get_number(str)
     if number < 0:
@@ -33,6 +34,7 @@ def get_degree(number, degree):
         number = round(1 / get_degree(number, abs(degree)), 5)
     return number
 
+
 number = get_number('Введите число: ')
 degree = get_number('Введите степень: ')
 result = get_degree(number, degree)
@@ -45,11 +47,13 @@ print(f'{number} в степени {degree} = {result}')
 Также нельзя использовать циклы.
 """
 
+
 def get_sum(a, b):
     if b == 0:
         return a
     else:
         return get_sum(a + 1, b - 1)
+
 
 num_A = get_number_not_negativ('Введите целое не отрицательное число A: ')
 num_B = get_number_not_negativ('Введите целое не отрицательное число B: ')
@@ -82,14 +86,17 @@ print(f'{num_A} + {num_B} = {result}')
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+
+
 def get_mark(str):
-   mark = input(str)
-   if mark == '*' or mark == '/' or mark == '+' or mark == '+' \
-           or mark == '-' or mark == '0':
-       return mark
-   else:
-       print('Введен неверный символ, попробуйте еще раз')
-       return get_mark(str)
+    mark = input(str)
+    if mark == '*' or mark == '/' or mark == '+' or mark == '+' \
+            or mark == '-' or mark == '0':
+        return mark
+    else:
+        print('Введен неверный символ, попробуйте еще раз')
+        return get_mark(str)
+
 
 def calculator():
     mark = get_mark('Введите операцию (+, -, *, / или 0 для выхода): ')
@@ -134,16 +141,18 @@ calculator()
 Введите число: 123
 Количество четных и нечетных цифр в числе равно: (1, 2)
 """
-def get_count_number(value, number_even = 0, number_odd = 0):
+
+
+def get_count_number(value, number_even=0, number_odd=0):
     if value == 0:
         return (number_even, number_odd)
     else:
         temp = value % 10
         value = value // 10
         if temp % 2 == 0:
-            return get_count_number(value,number_even + 1, number_odd)
+            return get_count_number(value, number_even + 1, number_odd)
         else:
-            return get_count_number(value,number_even, number_odd + 1)
+            return get_count_number(value, number_even, number_odd + 1)
 
 
 value = get_number('Введите число: ')
@@ -168,8 +177,9 @@ print(f'Количество четных и нечетных цифр в чис
 Не забудьте проверить на числе, которое оканчивается на 0.
 1230 -> 0321
 """
-def upside(value, temp = 0):
 
+
+def upside(value, temp=0):
     if value == 0:
         return temp
     else:
@@ -183,3 +193,26 @@ if value % 10 != 0:
     print(upside(value))
 else:
     print(f'0{upside(value)}')
+
+"""
+Задание 4. Найти сумму n элементов следующего ряда чисел:
+1 -0.5 0.25 -0.125 ...
+Количество элементов (n) вводится с клавиатуры.
+Пример:
+Введите количество элементов: 3
+Количество элементов - 3, их сумма - 0.75
+Решите через рекурсию. В задании нельзя применять циклы.
+Нужно обойтисть без создания массива!
+"""
+
+
+def get_sum(value, count=0):
+    if value == 0:
+        return count
+    else:
+        count = count + (-0.5) ** (value - 1)
+        return get_sum(value - 1, count)
+
+
+value = get_number('Введите количество элементов: ')
+print(f'Количество элементов - {value}, их сумма - {get_sum(value)}')
