@@ -1,17 +1,26 @@
+def get_number(string):
+    try:
+        number = int(input(string))
+    except ValueError:
+        print('Введено не число')
+        return get_number(string)
+    return number
+
+def get_number_not_negativ(str):
+    number = get_number(str)
+    if number < 0:
+        print('Значение не может быть отрицательным')
+        return get_number_not_negativ(str)
+    return number
+
+
 """
 Задача 26:
 Напишите программу, которая на вход принимает
 два числа A и B, и возводит число А в целую степень B с
 помощью рекурсии.
 """
-def get_number(string):
-    global num
-    try:
-        num = int(input(string))
-    except ValueError:
-        print('Введено не число')
-        get_number(string)
-    return num
+
 
 def get_degree(number, degree):
     if degree == 1:
@@ -35,17 +44,6 @@ print(f'{number} в степени {degree} = {result}')
 всех арифметических операций допускаются только +1 и -1.
 Также нельзя использовать циклы.
 """
-def get_number(string):
-    global num
-    try:
-        num = int(input(string))
-    except ValueError:
-        print('Введено не число')
-        get_number(string)
-    if num < 0:
-        print('Введено отрицательное число')
-        get_number(string)
-    return num
 
 def get_sum(a, b):
     if b == 0:
@@ -53,7 +51,68 @@ def get_sum(a, b):
     else:
         return get_sum(a + 1, b - 1)
 
-num_A = get_number('Введите целое не отрицательное число A: ')
-num_B = get_number('Введите целое не отрицательное число B: ')
+num_A = get_number_not_negativ('Введите целое не отрицательное число A: ')
+num_B = get_number_not_negativ('Введите целое не отрицательное число B: ')
 result = get_sum(num_A, num_B)
 print(f'{num_A} + {num_B} = {result}')
+
+"""
+Задание 1.
+Написать программу, которая будет складывать, вычитать,
+умножать или делить два числа. Числа и знак операции вводятся пользователем.
+После выполнения вычисления программа не должна завершаться, а должна
+запрашивать новые данные для вычислений. Завершение программы должно
+выполняться при вводе символа '0' в качестве знака операции. Если пользователь
+вводит неверный знак (не '0', '+', '-', '*', '/'), то программа должна
+сообщать ему об ошибке и снова запрашивать знак операции.
+Также сообщать пользователю о невозможности деления на ноль,
+если он ввел 0 в качестве делителя.
+Подсказка:
+Вариант исполнения:
+- условие рекурсивного вызова - введена операция +, -, *, / - ШАГ РЕКУРСИИ
+- условие завершения рекурсии - введена операция 0 - БАЗОВЫЙ СЛУЧАЙ
+Решите через рекурсию. В задании нельзя применять циклы.
+Пример:
+Введите операцию (+, -, *, / или 0 для выхода): +
+Введите первое число: 214
+Введите второе число: 234
+Ваш результат 448
+Введите операцию (+, -, *, / или 0 для выхода): -
+Введите первое число: вп
+Вы вместо трехзначного числа ввели строку (((. Исправьтесь
+Введите операцию (+, -, *, / или 0 для выхода):
+"""
+def get_mark(str):
+   mark = input(str)
+   if mark == '*' or mark == '/' or mark == '+' or mark == '+' \
+           or mark == '-' or mark == '0':
+       return mark
+   else:
+       print('Введен неверный символ, попробуйте еще раз')
+       return get_mark(str)
+
+def calculator():
+    mark = get_mark('Введите операцию (+, -, *, / или 0 для выхода): ')
+    if mark == '0':
+        return
+    number1 = get_number('Введите первое число: ')
+    number2 = get_number('Введите второе число: ')
+    if mark == '*':
+        print(f'Ваш результат {number1 * number2}')
+        return calculator()
+    elif mark == '+':
+        print(f'Ваш результат = {number1 + number2}')
+        return calculator()
+    elif mark == '-':
+        print(f'Ваш результат = {number1 - number2}')
+        return calculator()
+    elif mark == '/':
+        try:
+            print(f'Ваш результат = {number1 / number2}')
+        except ZeroDivisionError:
+            print('Деление на 0 невозможно')
+        finally:
+            return calculator()
+
+
+calculator()
