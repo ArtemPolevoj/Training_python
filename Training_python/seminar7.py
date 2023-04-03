@@ -115,3 +115,62 @@ engineer.surname = "Иванов"
 print(engineer.get_full_name())
 print(engineer.get_total_income())
 print(engineer)
+
+"""
+Задание 4.
+Реализовать класс Matrix (матрица). Обеспечить перегрузку конструктора класса
+(метод init()), который должен принимать данные (список списков) для
+формирования матрицы.
+Подсказка: матрица — система некоторых математических величин, расположенны
+в виде прямоугольной схемы.
+Примеры матриц: 3 на 2, 3 на 3, 2 на 4.
+31 22
+37 43
+51 86
+
+3 5 32
+2 4 6
+-1 64 -8
+
+3 5 8 3
+8 3 7 1
+
+Следующий шаг — реализовать перегрузку метода str() для вывода матрицы в
+привычном виде.
+Далее реализовать перегрузку метода add() для реализации операции сложения двух
+объектов класса Matrix (двух матриц). Результатом сложения должна быть
+новая матрица.
+Подсказка: сложение элементов матриц выполнять поэлементно — первый элемент
+первой строки первой матрицы складываем с первым элементом первой строки
+второй матрицы и т.д.
+"""
+class Matrix:
+    def __init__(self, data: list):
+        self.data = data
+
+    def __str__(self):
+        temp = []
+        for row in self.data:
+            temp.append(' '.join([str(k) for k in row]))
+        return '\n'.join(temp)
+
+    def __add__(self, other):
+        result = []
+        for i, row in enumerate(self.data):
+            temp_list = list(map(lambda x, y: x + y, row, other.data[i]))
+            result.append(temp_list)
+        return Matrix(result)
+
+
+lists_1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+lists_2 = [[4, 5, 6], [7, 8, 9], [1, 2, 3]]
+
+matrix_1 = Matrix(lists_1)
+matrix_2 = Matrix(lists_2)
+result_matrix = matrix_1 + matrix_2
+
+print(matrix_1)
+print()
+print(matrix_2)
+print()
+print(result_matrix)
