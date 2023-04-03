@@ -144,6 +144,8 @@ print(engineer)
 первой строки первой матрицы складываем с первым элементом первой строки
 второй матрицы и т.д.
 """
+
+
 class Matrix:
     def __init__(self, data: list):
         self.data = data
@@ -155,11 +157,11 @@ class Matrix:
         return '\n'.join(temp)
 
     def __add__(self, other):
-        result = []
+        temp = []
         for i, row in enumerate(self.data):
             temp_list = list(map(lambda x, y: x + y, row, other.data[i]))
-            result.append(temp_list)
-        return Matrix(result)
+            temp.append(temp_list)
+        return Matrix(temp)
 
 
 lists_1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -174,3 +176,38 @@ print()
 print(matrix_2)
 print()
 print(result_matrix)
+
+"""
+Задача 34:
+Винни-Пух попросил Вас посмотреть, есть ли в его стихах ритм.
+Поскольку разобраться в его кричалках не настолько просто, насколько легко он
+их придумывает, Вам стоит написать программу. Винни-Пух считает, что ритм есть,
+если число слогов (т.е. число гласных букв) в каждой фразе
+стихотворения одинаковое. Фраза может состоять из одного слова,
+если во фразе несколько слов, то они разделяются дефисами. Фразы отделяются
+друг от друга пробелами. Стихотворение  Винни-Пух вбивает в программу
+с клавиатуры. В ответе напишите “Парам пам-пам”, если с ритмом все в порядке и
+“Пам парам”, если с ритмом все не в порядке
+*Пример:*
+**Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да    
+    **Вывод:** Парам пам-пам
+"""
+
+
+def rhythm(poem):
+    temp = poem.split()
+    array = []
+    for phrase in temp:
+        count = 0
+        for i in phrase:
+            if i in 'аеёиоуыэюя':
+                count = count + 1
+        array.append(count)
+    return len(array) == array.count(array[0])
+
+
+poem = 'пара-ра-рам рам-пам-папам па-ра-па-дам'
+if rhythm(poem):
+    print('Парам пам-пам')
+else:
+    print('Пам парам')
