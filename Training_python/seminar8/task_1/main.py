@@ -37,6 +37,47 @@ os_code_list, os_type_list. В этой же функции создать гл�
 ПРОШУ ВАС НЕ УДАЛЯТЬ СЛУЖЕБНЫЕ ФАЙЛЫ TXT И ИТОГОВЫЙ ФАЙЛ CSV!!!
 """
 
+# os_prod_reg = re.compile(r'Изготовитель системы:\s*\S*')
+# os_prod_list.append(os_prod_reg.findall(data)[0].split()[2])
+import re
+import csv
 
-os_prod_reg = re.compile(r'Изготовитель системы:\s*\S*')
-os_prod_list.append(os_prod_reg.findall(data)[0].split()[2])
+
+def get_data():
+    prod = re.compile(r'Изготовитель системы:\s*\S*')
+    name = re.compile(r'Windows \s*\S*')
+    code = re.compile(r'Код продукта:\s*\S*')
+    type_OS = re.compile(r'Тип системы:\s*\S*')
+    os_prod_list = []
+    os_name_list = []
+    os_code_list = []
+    os_type_list = []
+    main_data = [
+        ['Изготовитель системы', 'Название ОС', 'Код продукта', 'Тип системы'],
+        [], [], []]
+    list_file = ['info_1.txt', 'info_2.txt', 'info_3.txt']
+    for path in list_file:
+        with open(path) as file:
+            file.tell()
+            text = file.read()
+            os_prod_list.append(prod.findall(text)[0].split()[2])
+            os_name_list.append(name.findall(text)[0])
+            os_code_list.append(code.findall(text)[0].split()[2])
+            os_type_list.append(type_OS.findall(text)[0].split()[2])
+            main_data[list_file.index(path) + 1].append(str(list_file.index(path) + 1))
+            main_data[list_file.index(path) + 1].append(os_prod_list[list_file.index(path)])
+            main_data[list_file.index(path) + 1].append(os_name_list[list_file.index(path)])
+            main_data[list_file.index(path) + 1].append(os_code_list[list_file.index(path)])
+            main_data[list_file.index(path) + 1].append(os_type_list[list_file.index(path)])
+    return main_data
+
+
+def write_to_csv(file_name):
+    with open(file_name, 'w') as file:
+        wrtie_csv = csv.writer(file)
+        data = get_data()
+        for i in data:
+            wrtie_csv.writerow(i)
+
+
+write_to_csv('test.csv')
