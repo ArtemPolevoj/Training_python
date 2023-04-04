@@ -73,7 +73,7 @@ def get_data():
 
 
 def write_to_csv(file_name):
-    with open(file_name, 'w') as file:
+    with open(file_name, 'w', encoding='utf-8') as file:
         wrtie_csv = csv.writer(file)
         data = get_data()
         for i in data:

@@ -39,7 +39,7 @@ def write_order_to_json(item, quantity, price, buyer, date):
 
     read_data["orders"].append(data)
 
-    with open('test.json', 'w', encoding="windows-1251") as file_json:
+    with open('test.json', 'w', encoding="utf-8") as file_json:
         json.dump(read_data, file_json, indent=4, ensure_ascii=False)
 
 
