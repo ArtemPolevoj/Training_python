@@ -12,7 +12,11 @@
 list_str = ['attribute', 'класс', 'функция', 'type']
 for s in list_str:
     temp = bytes(s, 'UTF-8')
-    if len(s) != len(temp):
-        raise ValueError('Не возможно записать байтовом формате'
-                         ' с помощью маркировки b\'\'.')
-    print(f'"{s}", в байтовом формате - {temp}.')
+    try:
+        if len(s) != len(temp):
+            raise ValueError
+    except ValueError:
+        print(f'"{s}" не возможно записать байтовом формате'
+                             ' с помощью маркировки b\'\'.')
+    else:
+        print(f'"{s}", в байтовом формате - {temp}.')
