@@ -10,3 +10,8 @@
 --- b'class' - используйте маркировку b''
 --- используйте списки и циклы, не дублируйте функции
 """
+list_str = ['class', 'function', 'method']
+for s in list_str:
+    temp = bytes(s, 'UTF-8')
+    print(f'"{s}", в байтовом формате - {temp}, тип  - {type(temp)},'
+          f' длина - {len(temp)}.')
